@@ -1,0 +1,8 @@
+{
+  "name": "JobInsight",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e02be34e"
+}
