@@ -1,0 +1,59 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="form-wrapper">
+    <div class="ion-text-center">
+      <ion-label class="welcome-label">Ingresa a Nuestra Red Profesional</ion-label>
+    </div>
+
+    <ion-card>
+      <ion-card-header class="ion-text-center">
+        Crear Cuenta
+      </ion-card-header>
+      <ion-card-content>
+        <form>
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input name="nombre" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Apellido</ion-label>
+            <ion-input name="apellido" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="email" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input type="password" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Teléfono</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Dirección</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Tipo</ion-label>
+            <ion-select>
+              <ion-select-option>Administrador</ion-select-option>
+              <ion-select-option>Usuario</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <div class="ion-text-center ion-margin-top">
+            <ion-button expand="block" type="submit" color="primary">Registrar</ion-button>
+            <ion-label class="forgot-password" (click)="routerLogIn()">¿Ya tienes una cuenta? Inicia Sesion</ion-label>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

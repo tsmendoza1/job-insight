@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfil del Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información del Perfil</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Usuario (Nombre o Email, según lo que se tenga disponible) -->
+      <ion-item>
+        <ion-label position="stacked">Usuario</ion-label>
+        <ion-input [value]="perfil?.usuario?.email" disabled></ion-input>
+      </ion-item>
+
+      <!-- Descripción -->
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea [value]="perfil?.descripcion" autoGrow="true" disabled></ion-textarea>
+      </ion-item>
+
+      <!-- Habilidades -->
+      <ion-item>
+        <ion-label position="stacked">Habilidades</ion-label>
+        <ion-chip >
+          <ion-label></ion-label>
+        </ion-chip>
+      </ion-item>
+
+      <!-- Experiencia Laboral -->
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Experiencia Laboral</ion-label>
+        </ion-list-header>
+        <ion-item >
+          <ion-label></ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Formación Académica -->
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Formación Académica</ion-label>
+        </ion-list-header>
+        <ion-item >
+          <ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

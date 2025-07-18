@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <ion-label class="welcome-label">¡Bienvenido de vuelta!</ion-label>
+
+    <ion-card>
+      <ion-card-header class="ion-text-center">
+        Job Insight
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item lines="none" class="input-item">
+          <ion-label position="stacked">Usuario</ion-label>
+          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-label position="stacked">Clave</ion-label>
+          <ion-input type="password" placeholder="Ingrese su clave"></ion-input>
+        </ion-item>
+
+        <div class="ion-text-center">
+          <ion-button expand="block" (click)="login()">Iniciar Sesión</ion-button>
+          <ion-label class="forgot-password"(click)="routerSingIng()">¿Olvidó su contraseña?</ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

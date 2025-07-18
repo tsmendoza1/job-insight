@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="favorite">
+    <ion-title>Ofertas de Empleo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" color="favorite">
+  <ion-list *ngIf="listaOfertas.length > 0; else sinOfertas">
+    <ion-card *ngFor="let oferta of listaOfertas" class="card-oferta">
+      <ion-card-header>
+        <ion-card-title>{{ oferta.titulo }}</ion-card-title>
+        <ion-card-subtitle>{{ oferta.nombreEmpresa }} - {{ oferta.ubicacion }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Descripción:</strong> {{ oferta.descripcion }}</p>
+        <p><strong>Fecha de publicación:</strong> {{ oferta.fechaPublicacion }}</p>
+        <p><strong>Tipo de trabajo:</strong> {{ oferta.tipoTrabajo }}</p>
+        <p><strong>Salario:</strong> ${{ oferta.salario }}</p>
+
+        <div *ngIf="oferta.requisitos.length > 0">
+          <p><strong>Requisitos:</strong></p>
+          <ul>
+            <li *ngFor="let req of oferta.requisitos">{{ req }}</li>
+          </ul>
+        </div>
+
+        <div *ngIf="oferta.requisitosExperiencia.length > 0">
+          <p><strong>Experiencia:</strong></p>
+          <ul>
+            <li *ngFor="let exp of oferta.requisitosExperiencia">{{ exp }}</li>
+          </ul>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ng-template #sinOfertas>
+    <ion-text color="medium">
+      <p class="ion-text-center">No hay ofertas laborales disponibles.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

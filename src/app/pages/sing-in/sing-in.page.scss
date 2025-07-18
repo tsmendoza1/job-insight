@@ -1,0 +1,28 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+}
+
+.welcome-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  display: block;
+  text-align: center;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 12px;
+  color: #3880ff;
+  cursor: pointer;
+}

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Oferta Laboral</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Nombre Empresa</ion-label>
+    <ion-input [(ngModel)]="nuevaOferta.nombreEmpresa"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Título</ion-label>
+    <ion-input [(ngModel)]="nuevaOferta.titulo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-textarea [(ngModel)]="nuevaOferta.descripcion"></ion-textarea>
+  </ion-item>
+
+  <!-- Requisitos -->
+  <ion-item>
+    <ion-label position="floating">Agregar Requisito</ion-label>
+    <ion-input [(ngModel)]="nuevoRequisito" (keyup.enter)="agregarRequisito()"></ion-input>
+  </ion-item>
+  <ion-chip *ngFor="let req of nuevaOferta.requisitos; let i = index" color="primary">
+    {{ req }}
+    <ion-icon name="close" (click)="eliminarRequisito(i)"></ion-icon>
+  </ion-chip>
+
+  <!-- Requisitos Experiencia -->
+  <ion-item>
+    <ion-label position="floating">Agregar Requisito de Experiencia</ion-label>
+    <ion-input [(ngModel)]="nuevoRequisitoExp" (keyup.enter)="agregarRequisitoExperiencia()"></ion-input>
+  </ion-item>
+  <ion-chip *ngFor="let req of nuevaOferta.requisitosExperiencia; let i = index" color="secondary">
+    {{ req }}
+    <ion-icon name="close" (click)="eliminarRequisitoExp(i)"></ion-icon>
+  </ion-chip>
+
+  <ion-item>
+    <ion-label position="floating">Ubicación</ion-label>
+    <ion-input [(ngModel)]="nuevaOferta.ubicacion"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Fecha de Publicación</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="nuevaOferta.fechaPublicacion"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Salario</ion-label>
+    <ion-input type="number" [(ngModel)]="nuevaOferta.salario"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo de Trabajo</ion-label>
+    <ion-select [(ngModel)]="nuevaOferta.tipoTrabajo">
+      <ion-select-option *ngFor="let tipo of tiposTrabajo" [value]="tipo">{{ tipo }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="guardarOferta()">Guardar Oferta</ion-button>
+</ion-content>
