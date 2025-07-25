@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Consultas en lenguaje natural</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-item>
+    <ion-label position="floating">Haz tu pregunta</ion-label>
+    <ion-input [(ngModel)]="pregunta" placeholder="Ej: ¿Cuáles son las ofertas en Quito?" (keyup.enter)="consultar()"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="consultar()">
+    Consultar
+  </ion-button>
+
+  <ion-spinner *ngIf="cargando" name="crescent" class="ion-margin-top"></ion-spinner>
+
+  <ion-list *ngIf="resultados?.length">
+    <ion-item lines="full" *ngFor="let oferta of resultados">
+      <ion-label>
+        <h2>{{ oferta.titulo }}</h2>
+        <p><strong>Empresa:</strong> {{ oferta.nombreEmpresa }}</p>
+        <p><strong>Ubicación:</strong> {{ oferta.ubicacion }}</p>
+        <p><strong>Salario:</strong> {{ oferta.salario }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <p *ngIf="!cargando && resultados?.length === 0 && seConsulto">
+    No se encontraron resultados para tu consulta.
+  </p>
+
+</ion-content>

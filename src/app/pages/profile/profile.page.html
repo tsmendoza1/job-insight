@@ -5,52 +5,83 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Información del Perfil</ion-card-title>
-    </ion-card-header>
+  <ng-container *ngIf="perfil; else cargando">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información del Perfil</ion-card-title>
+      </ion-card-header>
 
-    <ion-card-content>
-      <!-- Usuario (Nombre o Email, según lo que se tenga disponible) -->
-      <ion-item>
-        <ion-label position="stacked">Usuario</ion-label>
-        <ion-input [value]="perfil?.usuario?.email" disabled></ion-input>
-      </ion-item>
-
-      <!-- Descripción -->
-      <ion-item>
-        <ion-label position="stacked">Descripción</ion-label>
-        <ion-textarea [value]="perfil?.descripcion" autoGrow="true" disabled></ion-textarea>
-      </ion-item>
-
-      <!-- Habilidades -->
-      <ion-item>
-        <ion-label position="stacked">Habilidades</ion-label>
-        <ion-chip >
-          <ion-label></ion-label>
-        </ion-chip>
-      </ion-item>
-
-      <!-- Experiencia Laboral -->
-      <ion-list>
-        <ion-list-header>
-          <ion-label>Experiencia Laboral</ion-label>
-        </ion-list-header>
-        <ion-item >
-          <ion-label></ion-label>
+      <ion-card-content>
+        <!-- Usuario (Email) -->
+        <ion-item>
+          <ion-label position="stacked">Usuario</ion-label>
+          <ion-input [value]="perfil.usuario?.email" disabled></ion-input>
         </ion-item>
-      </ion-list>
 
-      <!-- Formación Académica -->
-      <ion-list>
-        <ion-list-header>
-          <ion-label>Formación Académica</ion-label>
-        </ion-list-header>
-        <ion-item >
-          <ion-label>
-          </ion-label>
+        <!-- Descripción -->
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+          <ion-textarea [value]="perfil.descripcion" autoGrow="true" disabled></ion-textarea>
         </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+
+        <!-- Habilidades -->
+        <div *ngIf="perfil.habilidades?.length > 0; else noHabilidades">
+          <ion-item>
+            <ion-label position="stacked">Habilidades</ion-label>
+          </ion-item>
+          <ion-chip *ngFor="let habilidad of perfil.habilidades">
+            <ion-label>{{ habilidad }}</ion-label>
+          </ion-chip>
+        </div>
+        <ng-template #noHabilidades>
+          <p>No hay habilidades registradas.</p>
+        </ng-template>
+
+        <!-- Experiencia Laboral -->
+        <div *ngIf="perfil.experienciaLaboral?.length > 0; else noExperiencia">
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Experiencia Laboral</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let exp of perfil.experienciaLaboral">
+              <ion-label>
+                <h3>{{ exp.cargo || 'Cargo no definido' }}</h3>
+                <p>{{ exp.empresa || 'Empresa no definida' }}</p>
+                <p>{{ exp.desde }} - {{ exp.hasta || 'Presente' }}</p>
+                <p>{{ exp.descripcion }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <ng-template #noExperiencia>
+          <p>No hay experiencia laboral registrada.</p>
+        </ng-template>
+
+        <!-- Formación Académica -->
+        <div *ngIf="perfil.formacionAcademica?.length > 0; else noFormacion">
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Formación Académica</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let formacion of perfil.formacionAcademica">
+              <ion-label>
+                <h3>{{ formacion.titulo || 'Título no definido' }}</h3>
+                <p>{{ formacion.institucion || 'Institución no definida' }}</p>
+                <p>{{ formacion.desde }} - {{ formacion.hasta || 'Presente' }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <ng-template #noFormacion>
+          <p>No hay formación académica registrada.</p>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <!-- Spinner de carga -->
+  <ng-template #cargando>
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando perfil...</p>
+  </ng-template>
 </ion-content>

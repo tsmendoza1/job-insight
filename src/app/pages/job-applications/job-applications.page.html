@@ -1,13 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>jobApplications</ion-title>
+    <ion-title>Postulaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">jobApplications</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-list *ngIf="postulaciones.length > 0; else sinPostulaciones">
+    <ion-item *ngFor="let post of postulaciones">
+      <ion-label>
+        <h2>{{ post.oferta?.titulo || 'Sin título' }}</h2>
+        <p>Empresa: {{ post.oferta?.empresa?.nombre || 'Empresa no disponible' }}</p>
+        <p>Ubicación: {{ post.oferta?.ciudad || 'Ubicación no disponible' }}</p>
+        <p>Estado: {{ post.estado || 'Estado no disponible' }}</p>
+        <p>Fecha de Postulación: {{ post.fechaPostulacion | date: 'longDate' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #sinPostulaciones>
+    <p>No tienes postulaciones registradas.</p>
+  </ng-template>
+
 </ion-content>

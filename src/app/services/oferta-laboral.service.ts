@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OfertaLaboral } from '../components/oferta-laboral';
@@ -23,6 +23,7 @@ export class OfertaLaboralService {
   obtenerTodasLasOfertas(): Observable<OfertaLaboral[]> {
     return this.http.get<OfertaLaboral[]>(this.baseUrl);
   }
+
 
   actualizarOferta(id: number, oferta: OfertaLaboral): Observable<OfertaLaboral> {
     return this.http.put<OfertaLaboral>(`${this.baseUrl}/${id}`, oferta);
